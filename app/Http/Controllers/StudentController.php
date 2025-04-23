@@ -16,16 +16,19 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = $this->api->getAll();
+        $response = $this->api->getAll();
+        $students = is_array($response) && isset($response['data']) ? $response['data'] : [];
+    
         return view('students.index', compact('students'));
     }
-
+    
     public function show($id)
     {
-        $student = $this->api->get($id);
+        $response = $this->api->get($id);
+        $student = is_array($response) && isset($response['data']) ? $response['data'] : [];
         return view('students.show', compact('student'));
     }
-
+    
     public function create()
     {
         return view('students.create');
@@ -34,7 +37,7 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $response = $this->api->create($request->all());
-
+        // dd($response);
         if ($response->failed()) {
             return back()->withErrors($response->json())->withInput();
         }
@@ -44,14 +47,14 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        $student = $this->api->get($id);
+        $response = $this->api->get($id);
+        $student = is_array($response) && isset($response['data']) ? $response['data'] : [];
         return view('students.edit', compact('student'));
     }
 
     public function update(Request $request, $id)
     {
         $response = $this->api->update($id, $request->all());
-
         if ($response->failed()) {
             return back()->withErrors($response->json())->withInput();
         }

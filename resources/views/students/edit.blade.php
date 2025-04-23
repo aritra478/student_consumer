@@ -1,6 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layouts.app>
+    
     <h1 class="text-2xl font-bold mb-4">Edit Student</h1>
 
     @if($errors->any())
@@ -28,6 +27,6 @@
             <label>Phone:</label>
             <input type="text" name="phone" value="{{ $student['phone'] }}" class="w-full border p-2 rounded" required>
         </div>
-        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Update</button>
+        <button type="submit" class="mt-4 inline-block bg-yellow-500 text-white px-4 py-2 rounded">Update</button>
     </form>
-@endsection
+</x-layouts.app>

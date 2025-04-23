@@ -35,6 +35,6 @@ return [
         ],
     ],
     'api' => [
-    'url' => env('API_URL', 'students'),
-],
+        'url' => env('API_URL'),
+    ],
 ];
